@@ -5,22 +5,22 @@ import (
 	"errors"
 	"fmt"
 	ctoai "github.com/cto-ai/sdk-go"
+	"github.com/grokify/html-strip-tags-go" // => strip
 	"io/ioutil"
 	"net/http"
 	"strings"
 	"time"
-	"github.com/grokify/html-strip-tags-go" // => strip
 )
 
 type ResponseBody struct {
 	Success        bool           `json:"success"`
-	Data           []DemoNote     `json:"data"`
+	Data           []Note     `json:"data"`
 	AdditionalData AdditionalData `json:"additional_data"`
 	Error          string         `json:"error"`
 	ErrorCode      int            `json:"errorCode"`
 }
 
-type DemoNote struct {
+type Note struct {
 	Content      string       `json:"content"`
 	AddTime      string       `json:"add_time"`
 	UpdateTime   string       `json:"update_time"`
@@ -116,15 +116,15 @@ func callNotesAPI(apikey string, forDate string, body *ResponseBody) error {
 
 }
 
-func printDemoNotes(response *ResponseBody, client *ctoai.Client) {
+func printNotes(response *ResponseBody, client *ctoai.Client) {
 
 	if len(response.Data) > 0 {
-		UTC, err := time.LoadLocation("UTC")
+		fromTz, err := time.LoadLocation("UTC")
 		if err != nil {
 			panic(err)
 		}
 
-		EST, err := time.LoadLocation("EST")
+		toTz, err := time.LoadLocation("EST")
 		if err != nil {
 			panic(err)
 		}
@@ -132,9 +132,9 @@ func printDemoNotes(response *ResponseBody, client *ctoai.Client) {
 		for _, item := range response.Data {
 			timeOfCall := fmt.Sprintf("%s UTC", item.UpdateTime)
 			timeWithUTC := fmt.Sprintf("%s MST", item.UpdateTime)
-			time, err := time.ParseInLocation("2006-01-02 15:04:05 MST", timeWithUTC, UTC)
+			time, err := time.ParseInLocation("2006-01-02 15:04:05 MST", timeWithUTC, fromTz)
 			if err == nil {
-				time = time.In(EST)
+				time = time.In(toTz)
 				timeOfCall = time.Format("2006-01-02 15:04 MST")
 			}
 

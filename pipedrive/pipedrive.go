@@ -36,5 +36,9 @@ func Start() {
 	response := ResponseBody{}
 	getPipedriveNotes(&client, pipedriveApiKey, &response)
 
-	printDemoNotes(&response, &client)
+	//Print The notes to slack or terminal or where ever
+	trackPrintNotes(&client)
+	printNotes(&response, &client)
+
+	trackWorkflowCompletion(&client)
 }
