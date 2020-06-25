@@ -43,6 +43,7 @@ Initializing... done
 
 * Pipedrive uses UTC timezone for their dates, so if you have a note which occurred after midnight UTC, it may show up as the following day
 * This will automatically convert the date to EST - this can be easily changed in the `getpipedrivenotes.go` file by changing the `toTz` variable to your timezone
+* This will show all your users in pipedrive, if you want to filter by users, you'd have to add that filter into the `getpipedrivenotes.go` file
 
 ## Packages Used
 * [grokify/html-strip-tags-go](https://github.com/grokify/html-strip-tags-go) In order to strip the HTML tags out of the notes content we use 
@@ -56,4 +57,4 @@ To say thanks, you can share the project on social media or <br />
 Please report all issues in the GitHub Issue tracker
 
 ## Contributing
-Shoot me an email, or DM me on twitter and I am happy to allow other contributors.
+Shoot me an email, or DM me on Twitter and I am happy to allow other contributors.
