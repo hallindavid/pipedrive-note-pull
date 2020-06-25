@@ -1,0 +1,4 @@
+github.com/cto-ai/sdk-go v0.0.0-20200610203432-a31efd507d22 h1:73ye/AJr0S0nz5qLwHgTjaz32HLVA1cW5vUJdJZcJtI=
+github.com/cto-ai/sdk-go v0.0.0-20200610203432-a31efd507d22/go.mod h1:umIduIMaxXirQxEdnDGyTmFPmgflS/oMMGb8vqnT7vw=
+github.com/grokify/html-strip-tags-go v0.0.0-20200322061010-ea0c1cf2f119 h1:h3iGUlU8HyW4baKd6D+h1mwOHnM2kwskSuG6Bv4tSbc=
+github.com/grokify/html-strip-tags-go v0.0.0-20200322061010-ea0c1cf2f119/go.mod h1:2Su6romC5/1VXOQMaWL2yb618ARB8iVo6/DR99A6d78=

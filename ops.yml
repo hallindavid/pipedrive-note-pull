@@ -1,0 +1,23 @@
+# for more info visit https://cto.ai/docs/developing-ops/configuring-ops
+version: "1"
+commands:
+  # Unique identifier for your op (required)
+  - name: pipedrive-note-pull:1.0
+    # Determines whether this version of the op is visible to other people
+    public: false
+    # Short description for what your op does (required)
+    description: "This will retrieve notes from the Pipedrive CRM service and display them
+      (in terminal or slack) -  It's important to note that you need to add your
+      pipedrive api key as a secret with key: \"pipedrive_api_key\""
+    # Command that is executed when op is started ("npm start", "./start_script.sh", etc.) (required)
+    run: /ops/main
+    remote: true
+    sdk: "2"
+    # A link to a public Github repo (e.g.: "<https://github.com/cto-ai/aws>") or a markdown file
+    # (e.g.: "<https://raw.githubusercontent.com/cto-ai/github/master/README.md>").
+    # The README.md will be displayed on your Op page in our Community Registry
+    sourceCodeURL: ""
+    # If set to `true`, binds the host's current working directory to `/cwd`; default value: `false` - working directory `/ops`
+    mountCwd: false
+    # If set to `true`, binds the host's home directory to `/root`; default value: `false`
+    mountHome: false
