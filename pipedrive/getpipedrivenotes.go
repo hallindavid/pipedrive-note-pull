@@ -118,6 +118,7 @@ func callNotesAPI(apikey string, forDate string, body *ResponseBody) error {
 
 func printNotes(response *ResponseBody, client *ctoai.Client) {
 
+	noteDelimiter := "-----------------------------------"
 	if len(response.Data) > 0 {
 		fromTz, err := time.LoadLocation("UTC")
 		if err != nil {
@@ -146,14 +147,15 @@ func printNotes(response *ResponseBody, client *ctoai.Client) {
 			line3 = strings.Replace(line3, "&nbsp;", " ", -1)
 			line3 = fmt.Sprintf("Notes: %s", strip.StripTags(line3))
 
+			if err = client.Ux.Print(noteDelimiter); err != nil {
+				panic(err)
+			}
 			if err = client.Ux.Print(line1); err != nil {
 				panic(err)
 			}
-
 			if err = client.Ux.Print(line2); err != nil {
 				panic(err)
 			}
-
 			if err = client.Ux.Print(line3); err != nil {
 				panic(err)
 			}
